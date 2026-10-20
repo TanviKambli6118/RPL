@@ -1,69 +1,112 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Cpu, FileCheck2, Scale, type LucideIcon } from "lucide-react";
+import Logo from "@/components/logo";
 
-export default function Home() {
+type Feature = {
+  icon: LucideIcon;
+  text: string;
+};
+
+const features: Feature[] = [
+  { icon: Cpu, text: "AI-Powered Assessment" },
+  { icon: FileCheck2, text: "NSQF Aligned Qualification Packs" },
+  { icon: Scale, text: "Fair & Consistent Scoring" },
+];
+
+export default function Landing() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-gray-100 p-3 sm:p-6">
+      <section
+        className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col justify-between overflow-hidden rounded-2xl bg-[#0b2a5b] bg-cover bg-center text-white"
+        style={{ backgroundImage: "url('/worker.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2a5b] via-[#0b2a5b]/80 to-transparent" />
+
+        <div className="relative z-10 p-5 sm:p-10">
+          <Logo light />
+
+          <p className="mt-1 text-[11px] text-white/70">
+            Skill Today | Certified Tomorrow
           </p>
+
+          <div className="mt-16 max-w-md sm:mt-24">
+            <h1 className="text-3xl font-bold leading-tight sm:text-5xl">
+              Get Recognised <br /> for Your Skills
+            </h1>
+
+            <p className="mt-4 text-sm text-white/80 sm:text-base">
+              RPL helps you get certified for the skills you already have
+              through work experience.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/login"
+                className="rounded-md bg-[#f26b1d] px-6 py-2.5 text-sm font-semibold hover:bg-[#d95a10]"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
+                className="rounded-md border border-white/70 px-6 py-2.5 text-sm font-semibold hover:bg-white/10"
+              >
+                Register
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="relative z-10 grid gap-4 border-t border-white/20 bg-[#0b2a5b]/90 p-5 sm:grid-cols-3 sm:p-6">
+          {features.map(({ icon: Icon, text }) => (
+            <div
+              key={text}
+              className="flex items-center gap-3 text-xs sm:text-sm"
+            >
+              <Icon size={22} className="shrink-0 text-white/80" />
+              <span>{text}</span>
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto mt-6 max-w-6xl">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p className="text-sm font-semibold text-indigo-600">
+                Assessment partner portal
+              </p>
+
+              <h2 className="mt-1 text-xl font-bold text-slate-900">
+                Are you a certified assessor?
+              </h2>
+
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                Login or register separately to manage assigned workers,
+                review evidence, score field-wise criteria, and complete
+                assessor sign-off.
+              </p>
+            </div>
+
+            <div className="flex shrink-0 flex-wrap gap-3">
+              <Link
+                href="/login?role=assessor"
+                className="rounded-lg bg-[#0b2a5b] px-5 py-3 text-sm font-semibold text-white hover:bg-[#123c7a]"
+              >
+                Assessor login
+              </Link>
+
+              <Link
+                href="/register?role=assessor"
+                className="rounded-lg border border-[#0b2a5b] px-5 py-3 text-sm font-semibold text-[#0b2a5b] hover:bg-slate-50"
+              >
+                Assessor registration
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
